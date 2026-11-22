@@ -25,7 +25,7 @@ jobs:
 
       - name: Make scripts executable
         run: |
-          chmod +x auto/* config/hooks/live/*.hook.chroot config/includes.chroot/usr/local/bin/*
+          chmod +x auto/* config/hooks/live/*.hook.chroot config/includes.chroot/usr/local/bin/* config/includes.chroot/etc/skel/Desktop/*.desktop
 
       - name: Configure
         run: lb config
