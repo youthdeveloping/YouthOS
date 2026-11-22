@@ -8,6 +8,7 @@ on:
     paths:
       - "auto/**"
       - "config/**"
+      - "branding/**"
       - ".github/workflows/build-iso.yml"
 
 jobs:
@@ -30,6 +31,22 @@ jobs:
 
       - name: Configure
         run: lb config
+
+      # - by Claude Ai
+      - name: Customize boot menu
+        run: |
+          cp -r /usr/share/live/build/bootloaders config/bootloaders
+          # 배경 이미지 교체 (splash.svg는 제거)
+          for d in $(find config/bootloaders \( -name splash.png -o -name splash.svg \) -printf '%h\n' | sort -u); do
+            rm -f "$d/splash.svg"
+            cp branding/boot/splash.png "$d/splash.png"
+          done
+          # 메뉴 제목과 항목 이름
+          grep -rl "menu title" config/bootloaders | xargs -r sed -i 's/^\([[:space:]]*\)menu title .*/\1menu title YouthOS/'
+          grep -rl "Live system" config/bootloaders | xargs -r sed -i 's/Live system/YouthOS Live/g'
+          # 부팅 메뉴 자동 선택 대기 시간: 5초
+          grep -rlE "^timeout" config/bootloaders --include=*.cfg | xargs -r sed -i 's/^timeout .*/timeout 50/'
+          find config/bootloaders -maxdepth 2 | sort | head -50
 
       - name: Build ISO
         run: lb build
