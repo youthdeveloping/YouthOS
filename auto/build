@@ -1,4 +1,15 @@
 #!/bin/sh
 # - by Claude Ai
-set -e
-lb build noauto "${@}" 2>&1 | tee build.log
+# 빌드 로그를 build.log에 남기면서, lb build의 실패를 정확히 전달합니다.
+# (파이프 뒤의 tee가 성공해도 빌드 실패가 가려지지 않도록 종료 코드를 따로 저장합니다.
+#  이 문제는 ChatGPT AI가 발견했습니다.)
+set +e
+
+STATUS_FILE=".lb-build-status"
+
+{ lb build noauto "$@" 2>&1; echo "$?" > "$STATUS_FILE"; } | tee build.log
+
+STATUS=$(cat "$STATUS_FILE" 2>/dev/null || echo 1)
+rm -f "$STATUS_FILE"
+
+exit "$STATUS"
