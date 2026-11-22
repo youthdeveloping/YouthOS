@@ -4,7 +4,7 @@
 
 ## 1주차: 빌드 안정화 (A 중심)
 
-- [ ] GitHub Actions 빌드 성공 (오류 수정 반복)
+- [x] GitHub Actions 빌드 성공 (첫 ISO 2.88GB, 2026-11-22). 2GB를 넘으므로 GitHub Releases에는 올릴 수 없음
 - [ ] VirtualBox에서 부팅 후 아래 항목 점검
   - [ ] 한글 입력(fcitx5) 동작
   - [ ] 화면 언어와 시간대가 한국 기준인지
