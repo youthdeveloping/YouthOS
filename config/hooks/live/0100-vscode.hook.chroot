@@ -1,0 +1,8 @@
+#!/bin/sh
+# VS Code 설치 (Microsoft 공식 저장소)
+set -e
+
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list
+apt-get update
+apt-get install -y code

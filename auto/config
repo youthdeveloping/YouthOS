@@ -1,0 +1,17 @@
+#!/bin/sh
+# YouthOS live-build 설정
+set -e
+
+lb config noauto \
+	--distribution trixie \
+	--architectures amd64 \
+	--archive-areas "main contrib non-free-firmware" \
+	--binary-images iso-hybrid \
+	--bootloaders "grub-efi,syslinux" \
+	--debian-installer none \
+	--iso-application "YouthOS" \
+	--iso-publisher "YouthDeveloping" \
+	--iso-volume "YouthOS" \
+	--image-name "youthos" \
+	--bootappend-live "boot=live components quiet splash locales=ko_KR.UTF-8 keyboard-layouts=kr timezone=Asia/Seoul" \
+	"${@}"

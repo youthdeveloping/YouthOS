@@ -1,0 +1,38 @@
+# 데스크톱 (XFCE) 및 한국어 환경
+task-xfce-desktop
+task-korean-desktop
+locales-all
+fcitx5
+fcitx5-hangul
+fcitx5-config-qt
+im-config
+fonts-noto-cjk
+fonts-noto-color-emoji
+
+# 설치 프로그램 (USB 부팅 후 PC에 설치)
+calamares
+calamares-settings-debian
+
+# 입문 교육용
+python3
+python3-pip
+python3-venv
+python3-tk
+thonny
+nodejs
+npm
+
+# 개발 도구
+git
+gh
+build-essential
+curl
+wget
+ca-certificates
+gpg
+vim
+nano
+
+# 기본 앱
+network-manager-gnome
+firefox-esr
