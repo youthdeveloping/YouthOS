@@ -1,0 +1,12 @@
+#!/bin/sh
+# - by Claude Ai
+# Calamares가 YouthOS 브랜딩을 사용하도록 설정
+set -e
+
+if [ ! -f /etc/calamares/settings.conf ]; then
+	echo "calamares settings.conf not found" >&2
+	exit 1
+fi
+
+sed -i 's/^branding:.*/branding: youthos/' /etc/calamares/settings.conf
+grep -n '^branding:' /etc/calamares/settings.conf

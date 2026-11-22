@@ -1,0 +1,10 @@
+# - by Claude Ai
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouthOS 설치하기
+Comment=이 컴퓨터에 YouthOS 설치
+Exec=sudo -E calamares
+Icon=calamares
+Terminal=false
+Categories=System;
