@@ -1,6 +1,10 @@
 #!/bin/sh
 # - by Claude Ai
 # Cloudflare Wrangler CLI 설치
+# 버전을 고정하려면 빌드할 때 WRANGLER_VERSION 환경 변수를 지정합니다. (예: 4.0.0)
+# 지정하지 않으면 최신 버전을 설치하고, 설치된 버전을 빌드 로그에 기록합니다.
 set -e
 
-npm install -g wrangler
+npm install -g "wrangler@${WRANGLER_VERSION:-latest}"
+
+echo "[YouthOS] 설치된 Wrangler 버전: $(wrangler --version)"

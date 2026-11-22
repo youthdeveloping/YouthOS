@@ -9,6 +9,7 @@ on:
       - "auto/**"
       - "config/**"
       - "branding/**"
+      - "education/**"
       - ".github/workflows/build-iso.yml"
 
 jobs:
@@ -31,6 +32,14 @@ jobs:
 
       - name: Configure
         run: lb config
+
+      # - by Claude Ai
+      - name: Add education content
+        run: |
+          if [ -d education ]; then
+            mkdir -p config/includes.chroot/etc/skel/education
+            cp -r education/. config/includes.chroot/etc/skel/education/
+          fi
 
       # - by Claude Ai
       - name: Customize boot menu

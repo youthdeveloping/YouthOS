@@ -1,9 +1,13 @@
 #!/bin/sh
 # - by Claude Ai
 # 첫 로그인 때만 환영 화면을 엽니다.
+# 브라우저가 정상적으로 열리고 종료된 경우에만 완료로 기록하므로,
+# 실행에 실패하면 다음 로그인 때 다시 표시됩니다.
 FLAG="$HOME/.config/youthos/welcome-done"
 
 [ -f "$FLAG" ] && exit 0
 mkdir -p "$(dirname "$FLAG")"
-touch "$FLAG"
-exec firefox-esr /usr/share/youthos/welcome.html
+
+if firefox-esr /usr/share/youthos/welcome.html; then
+	touch "$FLAG"
+fi

@@ -4,6 +4,13 @@
 set -e
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft.gpg
+
+# 키 지문을 빌드 로그에 기록 (Microsoft 공식 문서의 지문과 대조해 확인)
+echo "[YouthOS] Microsoft 저장소 키 지문:"
+gpg --show-keys --with-fingerprint /usr/share/keyrings/microsoft.gpg
+
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list
 apt-get update
 apt-get install -y code
+
+echo "[YouthOS] 설치된 VS Code 버전: $(dpkg-query -W -f='${Version}' code)"

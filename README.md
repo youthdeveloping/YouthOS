@@ -40,8 +40,16 @@ GitHub 토큰, Cloudflare 로그인 정보 등은 이미지에 포함하지 않�
 
 ## 작업 표기 규칙
 
-- 여러 AI와 함께 작업하므로, Claude가 작성하거나 수정한 부분에는 `- by Claude Ai`를 표기합니다.
+- 여러 AI와 함께 작업하므로, Claude가 작성하거나 수정한 부분에는 `- by Claude Ai`를, ChatGPT가 작성하거나 수정한 부분에는 `- by ChatGPT AI`를 표기합니다.
 - 주석을 지원하지 않는 파일은 이 목록에 기록합니다.
   - `config/includes.chroot/etc/firefox/policies/policies.json` (- by Claude Ai)
+- 각자 별도 브랜치에서 작업하고 Pull Request로 통합합니다.
+- 상대방이 작성한 파일을 수정하기 전에는 현재 내용과 작업 내역을 확인하고, 수정 이유를 남깁니다.
+
+## 교육 콘텐츠
+
+- 저장소 루트의 `education/` 폴더에 작성합니다.
+- 빌드할 때 `config/includes.chroot/etc/skel/education/`로 복사되어, 설치된 시스템의 홈 폴더(`~/education`)에 들어갑니다.
+- 문서의 명령어는 ISO에 실제 탑재된 패키지와 일치해야 합니다.
 
 - by Claude Ai
