@@ -1,4 +1,5 @@
 #!/bin/sh
+# - by Claude Ai
 # YouthOS live-build 설정
 set -e
 

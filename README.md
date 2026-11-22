@@ -37,3 +37,11 @@ sudo lb build
 ## 보안 원칙
 
 GitHub 토큰, Cloudflare 로그인 정보 등은 이미지에 포함하지 않습니다. 각 사용자가 첫 부팅 후 직접 로그인합니다.
+
+## 작업 표기 규칙
+
+- 여러 AI와 함께 작업하므로, Claude가 작성하거나 수정한 부분에는 `- by Claude Ai`를 표기합니다.
+- 주석을 지원하지 않는 파일은 이 목록에 기록합니다.
+  - `config/includes.chroot/etc/firefox/policies/policies.json` (- by Claude Ai)
+
+- by Claude Ai

@@ -1,4 +1,5 @@
 #!/bin/sh
+# - by Claude Ai
 # 첫 로그인 때만 환영 화면을 엽니다.
 FLAG="$HOME/.config/youthos/welcome-done"
 

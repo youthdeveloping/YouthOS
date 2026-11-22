@@ -1,4 +1,5 @@
 #!/bin/sh
+# - by Claude Ai
 # Cloudflare Wrangler CLI 설치
 set -e
 

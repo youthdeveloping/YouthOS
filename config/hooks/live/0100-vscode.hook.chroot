@@ -1,4 +1,5 @@
 #!/bin/sh
+# - by Claude Ai
 # VS Code 설치 (Microsoft 공식 저장소)
 set -e
 
