@@ -5,6 +5,6 @@ Type=Application
 Name=청소년개발자 홈페이지
 Comment=youthdeveloping 홈페이지 열기
 Exec=firefox-esr https://youthdeveloping.github.io
-Icon=applications-internet
+Icon=/usr/share/youthos/logo.png
 Terminal=false
 Categories=Network;WebBrowser;Education;
