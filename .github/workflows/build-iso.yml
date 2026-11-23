@@ -69,3 +69,27 @@ jobs:
           path: "*.iso"
           if-no-files-found: error
           retention-days: 14
+
+      # - by Claude Ai
+      # Cloudflare R2 업로드: 저장소 Secrets가 없으면 건너뛴다
+      - name: Upload ISO to Cloudflare R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ vars.R2_BUCKET || 'youthos-iso' }}
+        run: |
+          if [ -z "$R2_ACCOUNT_ID" ] || [ -z "$R2_ACCESS_KEY_ID" ] || [ -z "$R2_SECRET_ACCESS_KEY" ]; then
+            echo "R2 Secrets가 설정되지 않아 업로드를 건너뜁니다."
+            exit 0
+          fi
+          apt-get install -y rclone
+          export RCLONE_CONFIG_R2_TYPE=s3
+          export RCLONE_CONFIG_R2_PROVIDER=Cloudflare
+          export RCLONE_CONFIG_R2_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
+          export RCLONE_CONFIG_R2_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
+          export RCLONE_CONFIG_R2_ENDPOINT="https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+          export RCLONE_CONFIG_R2_NO_CHECK_BUCKET=true
+          ISO=$(ls *.iso | head -n 1)
+          rclone copyto "$ISO" "r2:${R2_BUCKET}/youthos-latest.iso" --s3-chunk-size 64M --s3-upload-concurrency 8 --progress
+          rclone copyto "r2:${R2_BUCKET}/youthos-latest.iso" "r2:${R2_BUCKET}/youthos-${GITHUB_SHA::7}.iso"
