@@ -1,4 +1,5 @@
 // YouthOS Web Experience — - by ChatGPT AI
+// 로고 이미지 적용(about 앱, 상단 바 등) - by Claude Ai
 (() => {
   const $ = (id) => document.getElementById(id);
   const boot = $("boot"), desktop = $("desktop"), win = $("appWindow");
@@ -23,7 +24,7 @@ def hello():
 
 hello()</textarea></div>`},
     settings: {name:"설정",icon:"⚙",html:()=>`<div class="content-heading"><h3>시스템 설정</h3><span class="muted">개인화</span></div><div class="settings-list"><div class="setting-row"><b>테마</b><button id="themeToggle">다크 모드 켜짐</button></div><div class="setting-row"><b>배경화면</b><span>Midnight Blue</span></div><div class="setting-row"><b>언어</b><span>한국어</span></div><div class="setting-row"><b>시스템</b><span>YouthOS Web 0.1</span></div><div class="setting-row"><b>개발팀</b><span>청소년개발자</span></div></div>`},
-    about: {name:"YouthOS 정보",icon:"Y",html:()=>`<div style="text-align:center;padding:24px"><div class="mini-mark" style="margin:auto;width:48px;height:48px;font-size:22px">Y</div><h2>YouthOS</h2><p class="muted">Web Experience · Preview 0.1</p><p style="line-height:1.8">청소년 개발자를 위한 개발 친화적 운영체제 프로젝트.<br>Debian 기반 실제 OS와 웹 체험판을 함께 개발하고 있어.</p><p class="muted" style="font-size:10px">Designed for creators · by YouthDeveloper</p></div>`},
+    about: {name:"YouthOS 정보",icon:"Y",html:()=>`<div style="text-align:center;padding:24px"><img class="logo-img" src="./assets/youthos-mark.png" alt="YouthOS 로고" style="display:block;margin:auto;width:170px;height:auto"><h2>YouthOS</h2><p class="muted">Web Experience · Preview 0.1</p><p style="line-height:1.8">청소년 개발자를 위한 개발 친화적 운영체제 프로젝트.<br>Debian 기반 실제 OS와 웹 체험판을 함께 개발하고 있어.</p><p class="muted" style="font-size:10px">Designed for creators · by YouthDeveloper</p></div>`},
     calculator: {name:"계산기",icon:"＋",html:()=>`<div style="max-width:300px;margin:auto"><h3>간단 계산기</h3><input id="calcInput" placeholder="예: 12 * (3 + 4)" style="width:100%;padding:13px;background:#0a1424;border:1px solid #ffffff22;border-radius:8px;color:white"><button id="calcRun" class="primary-button" style="margin-top:12px">계산하기</button><p id="calcResult" class="muted"></p></div>`}
   };
 
