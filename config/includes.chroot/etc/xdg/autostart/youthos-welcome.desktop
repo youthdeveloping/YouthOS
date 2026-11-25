@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouthOS 첫 시작 안내
+Comment=처음 로그인할 때 YouthOS 안내 열기
+Exec=/usr/local/bin/youthos-welcome
+Icon=help-about
+Terminal=false
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true
