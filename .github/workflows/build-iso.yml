@@ -22,13 +22,16 @@ jobs:
       - name: Install build tools
         run: |
           apt-get update
-          apt-get install -y live-build git ca-certificates xorriso squashfs-tools
+          apt-get install -y live-build git ca-certificates xorriso squashfs-tools desktop-file-utils
 
       - uses: actions/checkout@v4
 
       - name: Make scripts executable
         run: |
           chmod +x auto/* config/hooks/live/*.hook.chroot config/includes.chroot/usr/local/bin/* config/includes.chroot/etc/skel/Desktop/*.desktop
+
+      - name: Validate YouthOS source
+        run: sh scripts/validate-youthos.sh
 
       - name: Configure
         run: lb config
