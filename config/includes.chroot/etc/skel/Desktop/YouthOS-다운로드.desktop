@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=다운로드
+Comment=다운로드 폴더 열기
+Exec=thunar Downloads
+Icon=folder-download
+Terminal=false
+Categories=System;FileTools;
+StartupNotify=true
