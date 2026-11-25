@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouthOS 환영합니다
+Comment=YouthOS 시작 안내와 개발 도구 안내 열기
+Exec=firefox-esr --new-window file:///usr/share/youthos/welcome.html
+Icon=help-about
+Terminal=false
+Categories=Education;Utility;
+StartupNotify=true
