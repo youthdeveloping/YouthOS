@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouthOS 앱 관리자
+Comment=앱 설치 및 제거
+Exec=youthos-app-center
+Icon=system-software-install
+Terminal=false
+Categories=System;
+StartupNotify=true

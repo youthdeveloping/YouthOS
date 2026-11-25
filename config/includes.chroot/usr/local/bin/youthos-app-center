@@ -1,0 +1,10 @@
+#!/bin/sh
+# - by ChatGPT AI
+# Synaptic provides a native Debian package manager.
+if command -v synaptic-pkexec >/dev/null 2>&1; then
+  exec synaptic-pkexec
+fi
+if command -v synaptic >/dev/null 2>&1; then
+  exec pkexec synaptic
+fi
+exec xfce4-terminal --hold --command="sh -c 'echo 앱 관리자를 찾을 수 없어. Synaptic 패키지를 설치해줘.'"

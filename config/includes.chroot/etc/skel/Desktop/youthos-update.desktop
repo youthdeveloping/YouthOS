@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=시스템 업데이트
+Comment=설치된 패키지 업데이트 확인 및 적용
+Exec=youthos-update
+Icon=system-software-update
+Terminal=false
+Categories=System;
+StartupNotify=true

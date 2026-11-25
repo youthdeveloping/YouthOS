@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=시스템 정보
+Comment=YouthOS 버전과 하드웨어 정보 보기
+Exec=youthos-system-info
+Icon=computer
+Terminal=false
+Categories=System;
+StartupNotify=true

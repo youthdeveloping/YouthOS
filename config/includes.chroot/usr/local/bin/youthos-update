@@ -1,0 +1,14 @@
+#!/bin/sh
+# - by ChatGPT AI
+# User-confirmed system updates; never runs unattended.
+set -eu
+if ! command -v pkexec >/dev/null 2>&1; then
+  if command -v yad >/dev/null 2>&1; then
+    yad --error --text="관리자 권한 도구(pkexec)를 찾을 수 없어 업데이트를 시작할 수 없어."
+  fi
+  exit 1
+fi
+if command -v yad >/dev/null 2>&1; then
+  yad --question --title="YouthOS 업데이트" --text="패키지 목록을 새로고침하고 설치된 패키지를 업데이트할까?\n\n관리자 비밀번호가 필요해." --button="취소:1" --button="업데이트:0" || exit 0
+fi
+exec xfce4-terminal --title="YouthOS 업데이트" --hold --command="pkexec sh -c 'apt-get update && apt-get upgrade -y'"

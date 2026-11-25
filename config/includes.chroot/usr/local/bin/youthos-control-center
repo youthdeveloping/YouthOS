@@ -1,0 +1,26 @@
+#!/bin/sh
+# - by ChatGPT AI
+# YouthOS central settings launcher.
+set -eu
+if ! command -v yad >/dev/null 2>&1; then
+  exec xfce4-settings-manager
+fi
+choice=$(yad --title="YouthOS 설정 센터" --width=520 --height=430 --list --column="기능" --column="설명" --hide-column=1 --print-column=1 --button="열기:0" --button="닫기:1" \
+  "display" "화면 해상도와 모니터" \
+  "network" "네트워크와 Wi-Fi" \
+  "sound" "소리와 출력 장치" \
+  "bluetooth" "블루투스 장치" \
+  "appearance" "테마와 바탕화면" \
+  "power" "전원과 절전" \
+  "keyboard" "키보드와 입력" \
+  "system" "전체 XFCE 설정") || exit 0
+case "$choice" in
+  display) exec xfce4-display-settings ;;
+  network) exec nm-connection-editor ;;
+  sound) exec pavucontrol ;;
+  bluetooth) exec blueman-manager ;;
+  appearance) exec xfce4-appearance-settings ;;
+  power) exec xfce4-power-manager-settings ;;
+  keyboard) exec xfce4-keyboard-settings ;;
+  system) exec xfce4-settings-manager ;;
+esac

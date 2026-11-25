@@ -1,0 +1,14 @@
+#!/bin/sh
+# - by ChatGPT AI
+# Basic system information without requiring network access.
+. /etc/os-release
+KERNEL=$(uname -r)
+ARCH=$(dpkg --print-architecture 2>/dev/null || uname -m)
+MEMORY=$(awk '/MemTotal/ {printf "%.1f GiB", $2/1024/1024}' /proc/meminfo)
+DISK=$(df -h / | awk 'NR==2 {print $3 " 사용 / " $2 " 전체"}')
+TEXT="배포판: ${PRETTY_NAME:-YouthOS}\n커널: $KERNEL\n아키텍처: $ARCH\n메모리: $MEMORY\n루트 디스크: $DISK"
+if command -v yad >/dev/null 2>&1; then
+  yad --title="YouthOS 시스템 정보" --width=460 --info --text="$TEXT"
+else
+  printf '%b\n' "$TEXT" | xfce4-terminal --disable-server --execute sh -c 'cat; read -r _'
+fi

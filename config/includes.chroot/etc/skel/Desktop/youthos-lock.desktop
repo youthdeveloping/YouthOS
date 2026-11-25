@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=화면 잠금
+Comment=현재 세션 잠그기
+Exec=youthos-lock
+Icon=system-lock-screen
+Terminal=false
+Categories=System;
+StartupNotify=true

@@ -13,6 +13,11 @@ auto/config
 config/package-lists/youthos.list.chroot
 config/includes.chroot/usr/local/bin/youthos-open-folder
 config/includes.chroot/usr/local/bin/youthos-welcome
+config/includes.chroot/usr/local/bin/youthos-control-center
+config/includes.chroot/usr/local/bin/youthos-update
+config/includes.chroot/usr/local/bin/youthos-app-center
+config/includes.chroot/usr/local/bin/youthos-lock
+config/includes.chroot/usr/local/bin/youthos-system-info
 config/includes.chroot/usr/share/youthos/welcome.txt
 config/includes.chroot/etc/skel/Desktop/youthos-home.desktop
 config/includes.chroot/etc/skel/Desktop/youthos-documents.desktop
@@ -20,13 +25,18 @@ config/includes.chroot/etc/skel/Desktop/youthos-downloads.desktop
 config/includes.chroot/etc/skel/Desktop/youthos-projects.desktop
 config/includes.chroot/etc/skel/Desktop/youthos-welcome.desktop
 config/includes.chroot/etc/skel/Desktop/youthos-wallpaper.desktop
+config/includes.chroot/etc/skel/Desktop/youthos-settings.desktop
+config/includes.chroot/etc/skel/Desktop/youthos-app-center.desktop
+config/includes.chroot/etc/skel/Desktop/youthos-update.desktop
+config/includes.chroot/etc/skel/Desktop/youthos-lock.desktop
+config/includes.chroot/etc/skel/Desktop/youthos-system-info.desktop
 "
 for file in $required_files; do
   [ -f "$file" ] || fail "필수 파일 없음: $file"
 done
 pass "필수 YouthOS 파일 확인"
 
-packages="thunar mousepad xfdesktop4 xfce4-settings xfce4-terminal gvfs udisks2 firefox-esr python3 git"
+packages="thunar mousepad xfdesktop4 xfce4-settings xfce4-terminal gvfs udisks2 firefox-esr python3 git network-manager network-manager-gnome yad pavucontrol blueman policykit-1 synaptic"
 for package in $packages; do
   grep -Eq "^[[:space:]]*${package}([[:space:]]|$)" config/package-lists/youthos.list.chroot || fail "패키지 목록 누락: $package"
 done
