@@ -65,3 +65,4 @@ lightdm-gtk-greeter
 
 # 앱 설치 및 시스템 유지관리
 synaptic
+sudo
