@@ -1,0 +1,10 @@
+# - by ChatGPT AI
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=프로젝트
+Comment=개발 프로젝트 모음 열기
+Exec=/usr/local/bin/youthos-open-folder Projects
+Icon=folder
+Terminal=false
+Categories=Development;FileManager;
