@@ -38,7 +38,7 @@ for file in $required_files; do
 done
 pass "필수 YouthOS 파일 확인"
 
-packages="thunar mousepad xfdesktop4 xfce4-settings xfce4-terminal gvfs udisks2 firefox-esr python3 git network-manager network-manager-gnome yad pavucontrol blueman policykit-1 synaptic sudo"
+packages="thunar mousepad xfdesktop4 xfce4-settings xfce4-terminal gvfs udisks2 firefox-esr python3 git network-manager network-manager-gnome yad pavucontrol blueman polkitd pkexec synaptic sudo"
 for package in $packages; do
   grep -Eq "^[[:space:]]*${package}([[:space:]]|$)" config/package-lists/youthos.list.chroot || fail "패키지 목록 누락: $package"
 done

@@ -59,7 +59,8 @@ xarchiver
 yad
 pavucontrol
 blueman
-policykit-1
+polkitd
+pkexec
 lightdm
 lightdm-gtk-greeter
 
