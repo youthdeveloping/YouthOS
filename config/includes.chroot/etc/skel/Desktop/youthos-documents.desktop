@@ -1,0 +1,10 @@
+# - by ChatGPT AI
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=문서
+Comment=문서 파일을 보관하는 폴더
+Exec=/usr/local/bin/youthos-open-folder Documents
+Icon=folder-documents
+Terminal=false
+Categories=System;FileManager;
