@@ -1,0 +1,10 @@
+# - by ChatGPT AI
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=환영합니다
+Comment=YouthOS 시작 안내 읽기
+Exec=mousepad /usr/share/youthos/welcome.txt
+Icon=help-about
+Terminal=false
+Categories=System;
