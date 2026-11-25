@@ -1,0 +1,3 @@
+#!/bin/sh
+# - by ChatGPT AI
+exec xflock4
