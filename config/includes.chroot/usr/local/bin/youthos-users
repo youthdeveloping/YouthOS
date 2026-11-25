@@ -12,6 +12,11 @@ valid_user() {
   [ "${#1}" -le 32 ]
 }
 
+regular_user() {
+  uid=$(id -u "$1" 2>/dev/null) || return 1
+  [ "$uid" -ge 1000 ] && [ "$uid" -lt 60000 ]
+}
+
 while :; do
   action=$(yad --title="YouthOS 사용자 및 권한" --width=500 --height=330 --list --column="작업" --column="설명" --hide-column=1 --print-column=1 --button="실행:0" --button="닫기:1" \
     "list" "로컬 사용자 계정 보기" \
@@ -42,8 +47,8 @@ while :; do
     admin)
       username=$(yad --entry --title="관리자 권한 부여" --text="sudo 그룹에 추가할 사용자 이름:")
       [ -n "$username" ] || continue
-      if ! valid_user "$username" || ! getent passwd "$username" >/dev/null; then
-        yad --error --text="존재하지 않거나 올바르지 않은 사용자야."
+      if ! valid_user "$username" || ! regular_user "$username"; then
+        yad --error --text="일반 사용자 계정만 관리자 그룹에 추가할 수 있어."
         continue
       fi
       yad --question --title="관리자 권한 확인" --text="$username 사용자에게 시스템 전체를 변경할 수 있는 관리자 권한을 줄까?" || continue
@@ -53,11 +58,11 @@ while :; do
     remove)
       username=$(yad --entry --title="사용자 계정 삭제" --text="삭제할 사용자 이름을 입력해줘. 홈 폴더는 보존돼:")
       [ -n "$username" ] || continue
-      if ! valid_user "$username" || ! getent passwd "$username" >/dev/null; then
-        yad --error --text="존재하지 않거나 올바르지 않은 사용자야."
+      if ! valid_user "$username" || ! regular_user "$username"; then
+        yad --error --text="일반 사용자 계정만 삭제할 수 있어."
         continue
       fi
-      if [ "$username" = "$USER" ]; then
+      if [ "$username" = "${USER:-}" ]; then
         yad --error --text="현재 로그인한 계정은 여기서 삭제할 수 없어."
         continue
       fi
