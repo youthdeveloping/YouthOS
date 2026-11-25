@@ -1,0 +1,10 @@
+# - by ChatGPT AI
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=내 홈 폴더
+Comment=내 개인 파일과 설정 열기
+Exec=/usr/local/bin/youthos-open-folder home
+Icon=user-home
+Terminal=false
+Categories=System;FileManager;

@@ -1,0 +1,15 @@
+#!/bin/sh
+# - by ChatGPT AI
+# Open only the standard YouthOS user folders in Thunar.
+set -eu
+
+case "${1:-home}" in
+  home) target="$HOME" ;;
+  Documents) target="$HOME/Documents" ;;
+  Downloads) target="$HOME/Downloads" ;;
+  Projects) target="$HOME/Projects" ;;
+  *) echo "YouthOS: 지원하지 않는 폴더입니다." >&2; exit 2 ;;
+esac
+
+mkdir -p "$target"
+exec thunar "$target"

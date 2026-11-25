@@ -1,0 +1,10 @@
+# - by ChatGPT AI
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=배경화면 설정
+Comment=YouthOS 바탕화면 변경하기
+Exec=xfdesktop-settings
+Icon=preferences-desktop-wallpaper
+Terminal=false
+Categories=Settings;DesktopSettings;
