@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouthOS 시스템 업데이트
+Comment=시스템 패키지 업데이트
+Exec=youthos-update
+Icon=system-software-update
+Terminal=false
+Categories=System;
+StartupNotify=true
