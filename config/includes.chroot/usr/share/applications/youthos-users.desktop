@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouthOS 사용자 및 권한
+Comment=로컬 사용자 계정과 관리자 권한 관리
+Exec=youthos-users
+Icon=system-users
+Terminal=false
+Categories=System;Settings;
+StartupNotify=true

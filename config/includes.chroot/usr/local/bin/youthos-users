@@ -1,0 +1,69 @@
+#!/bin/sh
+# - by ChatGPT AI
+# Basic local account management using Debian's native account tools.
+set -eu
+command -v yad >/dev/null 2>&1 || exec xfce4-settings-manager
+command -v pkexec >/dev/null 2>&1 || { yad --error --text="관리자 권한 도구(pkexec)가 없어."; exit 1; }
+
+valid_user() {
+  case "$1" in
+    ""|*[!a-z0-9_-]*|[!a-z_]* ) return 1 ;;
+  esac
+  [ "${#1}" -le 32 ]
+}
+
+while :; do
+  action=$(yad --title="YouthOS 사용자 및 권한" --width=500 --height=330 --list --column="작업" --column="설명" --hide-column=1 --print-column=1 --button="실행:0" --button="닫기:1" \
+    "list" "로컬 사용자 계정 보기" \
+    "add" "새 일반 사용자 계정 만들기" \
+    "admin" "선택한 사용자에게 관리자 그룹 권한 부여" \
+    "remove" "사용자 계정 삭제 (개인 폴더는 보존)") || exit 0
+
+  case "$action" in
+    list)
+      tmp=$(mktemp)
+      getent passwd | awk -F: '$3 >= 1000 && $3 < 60000 {printf "%-20s UID=%-6s 홈=%s\\n",$1,$3,$6}' > "$tmp"
+      yad --title="YouthOS 사용자 목록" --width=560 --height=380 --text-info --filename="$tmp"
+      rm -f "$tmp"
+      ;;
+    add)
+      username=$(yad --entry --title="새 사용자 만들기" --text="새 계정 이름을 입력해줘. (영문 소문자, 숫자, _, -)")
+      [ -n "$username" ] || continue
+      if ! valid_user "$username"; then
+        yad --error --text="계정 이름 형식이 올바르지 않아."
+        continue
+      fi
+      if getent passwd "$username" >/dev/null; then
+        yad --error --text="이미 존재하는 계정이야."
+        continue
+      fi
+      xfce4-terminal --title="사용자 계정 생성" --hold --command="pkexec adduser '$username'"
+      ;;
+    admin)
+      username=$(yad --entry --title="관리자 권한 부여" --text="sudo 그룹에 추가할 사용자 이름:")
+      [ -n "$username" ] || continue
+      if ! valid_user "$username" || ! getent passwd "$username" >/dev/null; then
+        yad --error --text="존재하지 않거나 올바르지 않은 사용자야."
+        continue
+      fi
+      yad --question --title="관리자 권한 확인" --text="$username 사용자에게 시스템 전체를 변경할 수 있는 관리자 권한을 줄까?" || continue
+      pkexec usermod -aG sudo "$username"
+      yad --info --text="$username 사용자를 sudo 그룹에 추가했어. 다음 로그인부터 적용돼."
+      ;;
+    remove)
+      username=$(yad --entry --title="사용자 계정 삭제" --text="삭제할 사용자 이름을 입력해줘. 홈 폴더는 보존돼:")
+      [ -n "$username" ] || continue
+      if ! valid_user "$username" || ! getent passwd "$username" >/dev/null; then
+        yad --error --text="존재하지 않거나 올바르지 않은 사용자야."
+        continue
+      fi
+      if [ "$username" = "$USER" ]; then
+        yad --error --text="현재 로그인한 계정은 여기서 삭제할 수 없어."
+        continue
+      fi
+      yad --question --title="계정 삭제 확인" --text="$username 계정만 삭제할까? 개인 홈 폴더와 파일은 삭제하지 않아." || continue
+      pkexec deluser "$username"
+      yad --info --text="$username 계정을 삭제했어. 홈 폴더는 보존했어."
+      ;;
+  esac
+done
