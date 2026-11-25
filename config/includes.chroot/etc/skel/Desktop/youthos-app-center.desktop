@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=앱 관리자
+Comment=Debian 패키지를 설치하고 제거
+Exec=youthos-app-center
+Icon=system-software-install
+Terminal=false
+Categories=System;Settings;
+StartupNotify=true
