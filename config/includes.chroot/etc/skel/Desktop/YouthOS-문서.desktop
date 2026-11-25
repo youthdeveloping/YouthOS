@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=문서
+Comment=내 문서 폴더 열기
+Exec=thunar Documents
+Icon=folder-documents
+Terminal=false
+Categories=System;FileTools;
+StartupNotify=true
