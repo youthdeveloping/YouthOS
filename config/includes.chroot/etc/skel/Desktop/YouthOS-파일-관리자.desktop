@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=파일 관리자
+Comment=내 파일과 폴더 열기
+Exec=thunar
+Icon=system-file-manager
+Terminal=false
+Categories=System;FileTools;
+StartupNotify=true
