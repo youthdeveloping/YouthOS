@@ -34,18 +34,34 @@ gpg
 vim
 nano
 
-# 기본 앱
+# 기본 앱 및 네트워크
+network-manager
 network-manager-gnome
 firefox-esr
 
 # - by ChatGPT AI
 # 실제 데스크톱 파일 관리 및 사용자 설정
 thunar
+thunar-volman
 mousepad
 xfdesktop4
 xfce4-settings
 xfce4-terminal
+xfce4-session
+xfce4-power-manager
+xfce4-screensaver
 gvfs
 gvfs-backends
 udisks2
 xarchiver
+
+# YouthOS 설정 센터 및 하드웨어 제어
+yad
+pavucontrol
+blueman
+policykit-1
+lightdm
+lightdm-gtk-greeter
+
+# 앱 설치 및 시스템 유지관리
+synaptic
