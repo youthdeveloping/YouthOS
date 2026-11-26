@@ -17,6 +17,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     container:
       image: debian:trixie
       options: --privileged
@@ -71,3 +73,28 @@ jobs:
           path: "*.iso"
           if-no-files-found: error
           retention-days: 14
+
+      # - by Claude Ai
+      # GitHub Releases는 파일 하나가 2GB를 넘으면 올릴 수 없어, ISO를 나눠서 올린다
+      - name: Split ISO for release
+        run: |
+          ISO=$(ls *.iso | head -n 1)
+          mkdir release
+          split -b 1900M -d -a 1 --numeric-suffixes=1 "$ISO" release/youthos.iso.part
+          (cd release && sha256sum youthos.iso.part* > SHA256SUMS)
+          ls -lh release
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: iso-latest
+          name: YouthOS 최신 ISO (조각 파일)
+          body: |
+            ISO가 2GB를 넘어 조각으로 나눠 올립니다. 모든 `youthos.iso.part*` 파일을 받은 뒤 한 파일로 합치세요.
+
+            Windows (CMD): `copy /b youthos.iso.part* youthos.iso`
+            Linux/macOS: `cat youthos.iso.part* > youthos.iso`
+
+            합친 뒤 `SHA256SUMS`와 비교하면 깨진 파일인지 확인할 수 있습니다.
+          files: release/*
+          prerelease: true
